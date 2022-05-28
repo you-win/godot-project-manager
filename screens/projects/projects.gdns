@@ -1,0 +1,8 @@
+[gd_resource type="NativeScript" load_steps=2 format=2]
+
+[ext_resource path="res://utils/godot_project_manager.gdnlib" type="GDNativeLibrary" id=1]
+
+[resource]
+resource_name = "Projects"
+class_name = "Projects"
+library = ExtResource( 1 )
