@@ -49,7 +49,9 @@ size_flags_vertical = 3
 
 [node name="List" type="VBoxContainer" parent="HSplitContainer/Left/Project"]
 margin_right = 796.0
+margin_bottom = 558.0
 size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Right" type="VBoxContainer" parent="HSplitContainer"]
 margin_left = 808.0
@@ -112,7 +114,7 @@ margin_right = 202.0
 margin_bottom = 156.0
 text = "Remove"
 
-[node name="Remove Missing" type="Button" parent="HSplitContainer/Right/Option/List"]
+[node name="RemoveMissing" type="Button" parent="HSplitContainer/Right/Option/List"]
 margin_top = 160.0
 margin_right = 202.0
 margin_bottom = 180.0

@@ -4,5 +4,5 @@
 
 [resource]
 resource_name = "Projects"
-class_name = "Projects"
+class_name = "ProjectsScreen"
 library = ExtResource( 1 )

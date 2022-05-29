@@ -15,10 +15,6 @@ run/main_scene="res://screens/main.tscn"
 run/low_processor_mode=true
 config/icon="res://assets/icon.png"
 
-[display]
-
-window/size/borderless=true
-
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/rust_build_helper/plugin.cfg" )

@@ -6,10 +6,10 @@ use gdnative::prelude::*;
 
 #[derive(NativeClass)]
 #[inherit(Control)]
-pub struct About;
+pub struct AboutScreen;
 
 #[methods]
-impl About {
+impl AboutScreen {
     fn new(_: &Control) -> Self {
         Self
     }
