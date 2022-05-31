@@ -1,13 +1,25 @@
 mod about_screen;
 mod addons_screen;
 mod config;
+mod engine;
 mod main_screen;
 mod projects_screen;
 mod settings_screen;
 mod templates_screen;
 mod utils;
 
-use gdnative::prelude::*;
+use gdnative::{
+    api::{LineEdit, TextEdit},
+    prelude::*,
+};
+use lazy_static::lazy_static;
+use std::sync::Mutex;
+
+pub static mut STATUS: Option<Ref<LineEdit>> = None;
+pub static mut LOGS: Option<Ref<TextEdit>> = None;
+lazy_static! {
+    pub static ref ENGINE: Mutex<engine::Engine> = Mutex::new(engine::Engine::new());
+}
 
 const APP_NAME: &str = "Godot Project Manager";
 const VERSION_MAJOR: u16 = 0;
@@ -19,38 +31,6 @@ pub fn app_name_and_version() -> String {
         "{} - {}.{}.{}",
         APP_NAME, VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH
     )
-}
-
-#[derive(Debug)]
-pub enum Error {
-    GenericError(String),
-    LoadError(String),
-    ConfigError(ConfigError),
-}
-
-#[derive(Debug)]
-pub enum ConfigError {
-    FileNotFound,
-    Load(String),
-    Write(String),
-}
-
-impl From<std::io::Error> for Error {
-    fn from(e: std::io::Error) -> Self {
-        Error::GenericError(e.to_string())
-    }
-}
-
-impl From<toml::de::Error> for Error {
-    fn from(e: toml::de::Error) -> Self {
-        Error::ConfigError(ConfigError::Load(e.to_string()))
-    }
-}
-
-impl From<toml::ser::Error> for Error {
-    fn from(e: toml::ser::Error) -> Self {
-        Error::ConfigError(ConfigError::Write(e.to_string()))
-    }
 }
 
 fn init(handle: InitHandle) {

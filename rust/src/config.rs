@@ -1,8 +1,7 @@
-use gdnative::api::ProjectSettings;
 use serde::{Deserialize, Serialize};
-use std::{fs, path::PathBuf};
+use std::{fs, io::Write, path::PathBuf};
 
-use crate::{utils::Stringable, Error, ConfigError};
+use crate::utils::Stringable;
 
 pub const SAVE_DIR: &str = "user://config.toml";
 
@@ -25,17 +24,17 @@ impl Config {
         }
     }
 
-    pub fn load<T: Stringable>(&mut self, path: T) -> Result<(), Error> {
+    pub fn load<T: Stringable>(&mut self, path: T) -> Result<(), Box<dyn std::error::Error>> {
         let path = PathBuf::from(path.to_string());
 
         let contents = match fs::read_to_string(path) {
             Ok(c) => c,
-            Err(e) => return Err(Error::ConfigError(ConfigError::FileNotFound)),
+            Err(e) => return Err(Box::new(e)),
         };
 
-        let mut config: Config = match toml::from_str(&contents) {
+        let config: Config = match toml::from_str(&contents) {
             Ok(v) => v,
-            Err(e) => return Err(Error::from(e)),
+            Err(e) => return Err(Box::new(e)),
         };
 
         self.search_path = config.search_path;
@@ -44,12 +43,23 @@ impl Config {
         Ok(())
     }
 
-    pub fn write(&self) -> Result<(), Error> {
+    pub fn write<T: Stringable>(&self, path: T) -> Result<(), Box<dyn std::error::Error>> {
         let toml = match toml::to_string_pretty(self) {
             Ok(s) => s,
-            Err(e) => return Err(Error::from(e)),
+            Err(e) => return Err(Box::new(e)),
         };
 
-        Ok(())
+        let path = PathBuf::from(path.to_string());
+
+        let mut file = fs::File::options()
+            .create(true)
+            .write(true)
+            .truncate(true)
+            .open(path)?;
+
+        match write!(&mut file, "{}", toml) {
+            Ok(_) => Ok(()),
+            Err(e) => Err(Box::new(e)),
+        }
     }
 }

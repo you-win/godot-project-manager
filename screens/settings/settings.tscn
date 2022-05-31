@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://screens/settings/settings.gdns" type="Script" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=1]
 
 [node name="Settings" type="PanelContainer"]
 anchor_right = 1.0
@@ -17,6 +19,7 @@ split_offset = 278
 [node name="Tree" type="Tree" parent="HSplitContainer"]
 margin_right = 279.0
 margin_bottom = 586.0
+hide_root = true
 
 [node name="General" type="ScrollContainer" parent="HSplitContainer"]
 margin_left = 291.0
@@ -28,3 +31,42 @@ margin_right = 719.0
 margin_bottom = 586.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="HSplitContainer/General/VBoxContainer"]
+margin_right = 719.0
+margin_bottom = 14.0
+text = "Some text weeee"
+
+[node name="Editors" type="ScrollContainer" parent="HSplitContainer"]
+visible = false
+margin_left = 291.0
+margin_right = 1010.0
+margin_bottom = 586.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/Editors"]
+margin_right = 719.0
+margin_bottom = 586.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Logs" type="VBoxContainer" parent="HSplitContainer"]
+visible = false
+margin_left = 291.0
+margin_right = 1010.0
+margin_bottom = 586.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/Logs"]
+margin_right = 719.0
+
+[node name="TextEdit" type="TextEdit" parent="HSplitContainer/Logs"]
+margin_top = 4.0
+margin_right = 719.0
+margin_bottom = 586.0
+size_flags_vertical = 3
+custom_colors/font_color_readonly = Color( 1, 1, 1, 1 )
+custom_styles/read_only = SubResource( 1 )
+readonly = true
+syntax_highlighting = true
+show_line_numbers = true
+wrap_enabled = true
+minimap_draw = true

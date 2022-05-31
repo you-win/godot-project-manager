@@ -2,8 +2,8 @@
 name = "godot-project-manager"
 version = "0.1.0"
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+authors = ["Tim Yuen"]
+license = "Apache-2.0"
 
 [lib]
 crate-type = ["cdylib"]
@@ -13,3 +13,4 @@ gdnative = "0.10"
 toml = "0.5"
 serde = { version = "1.0", features = ["derive"] }
 lazy_static = "1.4"
+chrono = "0.4.19"

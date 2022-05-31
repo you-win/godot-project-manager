@@ -1,20 +1,52 @@
+use std::fmt::Display;
+
 use gdnative::prelude::*;
 
-use crate::main_screen::STATUS;
+use crate::{LOGS, STATUS};
 
-pub trait Stringable: ToString + AsRef<str> {}
+pub trait Stringable: ToString + AsRef<str> + Display {}
 
 impl Stringable for &str {}
 impl Stringable for String {}
 
 pub fn update_status<T: Stringable>(text: T) {
+    let date = chrono::Local::now();
+    let text = format!("[{}] {}", date.format("%H:%M:%S"), &text);
+
+    // Always print using Godot's builtin logger
+    godot_print!("{}", &text);
+    unsafe {
+        if STATUS.is_none() {
+            godot_error!("Status element is empty");
+            return;
+        }
+        if LOGS.is_none() {
+            godot_error!("Logs element is empty");
+            return;
+        }
+
+        match STATUS.unwrap().assume_safe_if_sane() {
+            Some(s) => {
+                s.set_text(&text);
+                match LOGS.unwrap().assume_safe_if_sane() {
+                    Some(l) => {
+                        let old_text = l.text();
+                        l.set_text(format!("{}{}\n", old_text, &text));
+                    }
+                    None => godot_error!("Logs element is no longer valid"),
+                }
+            }
+            None => godot_error!("Status element is no longer valid"),
+        }
+    }
+
     unsafe {
         match STATUS {
             Some(s) => match s.assume_safe_if_sane() {
                 Some(s) => s.set_text(text),
-                None => godot_print!("Status element no longer valid"),
+                None => godot_error!("Status element no longer valid"),
             },
-            None => godot_print!("Status element not found"),
+            None => godot_error!("Status element not found"),
         }
     }
 }
