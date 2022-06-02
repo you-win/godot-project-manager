@@ -1,30 +1,46 @@
 use serde::{Deserialize, Serialize};
 use std::{fs, io::Write, path::PathBuf};
 
-use crate::utils::Stringable;
+use crate::{utils::Stringable, Result};
 
 pub const SAVE_DIR: &str = "user://config.toml";
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct Config {
-    search_path: String,
-    projects: Vec<Project>,
+    pub scan_paths: Vec<String>,
+    pub max_scan_depth: i64,
+    pub projects: Vec<Project>,
 }
 
-#[derive(Serialize, Deserialize)]
-struct Project {
-    name: String,
+#[derive(Serialize, Deserialize, Debug)]
+pub struct Project {
+    pub name: String,
+    pub path: String,
+}
+
+impl Project {
+    pub fn new<T: Stringable>(name: T, path: T) -> Self {
+        Self {
+            name: name.to_string(),
+            path: path.to_string(),
+        }
+    }
 }
 
 impl Config {
     pub fn new() -> Self {
         Self {
-            search_path: String::from("user://"),
+            scan_paths: vec![home::home_dir()
+                .unwrap_or(PathBuf::from("/"))
+                .to_str()
+                .unwrap_or("/")
+                .to_string()],
+            max_scan_depth: 1,
             projects: vec![],
         }
     }
 
-    pub fn load<T: Stringable>(&mut self, path: T) -> Result<(), Box<dyn std::error::Error>> {
+    pub fn load<T: Stringable>(&mut self, path: T) -> Result<()> {
         let path = PathBuf::from(path.to_string());
 
         let contents = match fs::read_to_string(path) {
@@ -37,13 +53,13 @@ impl Config {
             Err(e) => return Err(Box::new(e)),
         };
 
-        self.search_path = config.search_path;
+        self.scan_paths = config.scan_paths;
         self.projects = config.projects;
 
         Ok(())
     }
 
-    pub fn write<T: Stringable>(&self, path: T) -> Result<(), Box<dyn std::error::Error>> {
+    pub fn write<T: Stringable>(&self, path: T) -> Result<()> {
         let toml = match toml::to_string_pretty(self) {
             Ok(s) => s,
             Err(e) => return Err(Box::new(e)),

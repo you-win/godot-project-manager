@@ -8,6 +8,7 @@ pub trait Stringable: ToString + AsRef<str> + Display {}
 
 impl Stringable for &str {}
 impl Stringable for String {}
+impl Stringable for &String {}
 
 pub fn update_status<T: Stringable>(text: T) {
     let date = chrono::Local::now();

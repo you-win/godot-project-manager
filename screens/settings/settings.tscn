@@ -32,10 +32,39 @@ margin_bottom = 586.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="HSplitContainer/General/VBoxContainer"]
+[node name="ScanPaths" type="HBoxContainer" parent="HSplitContainer/General/VBoxContainer"]
 margin_right = 719.0
-margin_bottom = 14.0
-text = "Some text weeee"
+margin_bottom = 24.0
+hint_tooltip = "The scan paths to use separated by a comma (,)"
+
+[node name="Label" type="Label" parent="HSplitContainer/General/VBoxContainer/ScanPaths"]
+margin_top = 5.0
+margin_right = 357.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Scan paths:"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/General/VBoxContainer/ScanPaths"]
+margin_left = 361.0
+margin_right = 719.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/General/VBoxContainer/ScanPaths/VBoxContainer"]
+margin_right = 358.0
+margin_bottom = 24.0
+
+[node name="LineEdit" type="LineEdit" parent="HSplitContainer/General/VBoxContainer/ScanPaths/VBoxContainer/HBoxContainer"]
+margin_right = 317.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="HSplitContainer/General/VBoxContainer/ScanPaths/VBoxContainer/HBoxContainer"]
+margin_left = 321.0
+margin_right = 358.0
+margin_bottom = 24.0
+disabled = true
+text = "Add"
 
 [node name="Editors" type="ScrollContainer" parent="HSplitContainer"]
 visible = false

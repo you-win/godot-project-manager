@@ -97,7 +97,15 @@ impl ProjectsScreen {
 
     #[export]
     fn _on_scan(&self, _: &Control) {
-        nyi!()
+        let engine = crate::ENGINE.lock().unwrap();
+
+        let projects = match engine.scan_for_projects() {
+            Some(p) => p,
+            None => {
+                update_status("No projects found");
+                return;
+            }
+        };
     }
 
     #[export]

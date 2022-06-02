@@ -15,6 +15,10 @@ run/main_scene="res://screens/main.tscn"
 run/low_processor_mode=true
 config/icon="res://assets/icon.png"
 
+[debug]
+
+gdscript/warnings/return_value_discarded=false
+
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/rust_build_helper/plugin.cfg" )

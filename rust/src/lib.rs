@@ -33,6 +33,8 @@ pub fn app_name_and_version() -> String {
     )
 }
 
+pub type Result<T> = std::result::Result<T, Box<dyn std::error::Error>>;
+
 fn init(handle: InitHandle) {
     handle.add_class::<main_screen::MainScreen>();
 

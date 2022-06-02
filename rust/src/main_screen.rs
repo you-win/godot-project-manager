@@ -1,6 +1,7 @@
 use gdnative::api::{LineEdit, TabContainer, OS};
 use gdnative::prelude::*;
 
+use crate::settings_screen::SettingsScreen;
 use crate::{utils::update_status, ENGINE, STATUS};
 
 #[derive(NativeClass)]
@@ -21,16 +22,26 @@ impl MainScreen {
         let os = OS::godot_singleton();
         os.center_window();
 
-        let mut engine = ENGINE.lock().unwrap();
-        match engine.load_config() {
-            Ok(_) => {}
-            Err(e) => {
-                update_status(format!(
-                    "{:?}\nFailed to load config, using default config file",
-                    e
-                ));
+        {
+            let mut engine = ENGINE.lock().unwrap();
+            match engine.load_config() {
+                Ok(_) => {}
+                Err(e) => {
+                    update_status(format!(
+                        "{:?}\nFailed to load config, using default config file",
+                        e
+                    ));
+                }
             }
         }
+
+        let settings_screen = unsafe {
+            o.get_node_as_instance::<SettingsScreen>("VBoxContainer/TabContainer/Settings")
+                .unwrap()
+        };
+        settings_screen
+            .map_mut(|x, y| x.update_from_config(y))
+            .unwrap();
 
         os.set_window_title(crate::app_name_and_version());
 

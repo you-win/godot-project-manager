@@ -1,7 +1,7 @@
-use gdnative::api::{HSplitContainer, TextEdit, Tree};
+use gdnative::api::{HSplitContainer, LineEdit, TextEdit, Tree};
 use gdnative::prelude::*;
 
-use crate::LOGS;
+use crate::{ENGINE, LOGS};
 
 const STARTING_SCREEN: &str = "General";
 const TREE_NAME: &str = "Tree";
@@ -97,5 +97,28 @@ impl SettingsScreen {
 
         let node = unsafe { hsplit.get_node(name).unwrap().assume_safe() };
         node.cast::<Control>().unwrap().set_visible(true);
+    }
+
+    #[export]
+    pub fn update_from_config(&mut self, o: TRef<Control>) {
+        let mut engine = ENGINE.lock().unwrap();
+
+        let config = engine.config_mut();
+
+        // let scan_path = unsafe {
+        //     o.get_node_as::<LineEdit>("HSplitContainer/General/VBoxContainer/ScanPaths/LineEdit")
+        //         .unwrap()
+        // };
+        // scan_path.set_text(
+        //     config
+        //         .scan_paths
+        //         .clone()
+        //         .into_iter()
+        //         .reduce(|mut a, b| {
+        //             a = format!("{},{}", a, b);
+        //             a
+        //         })
+        //         .unwrap(),
+        // );
     }
 }
