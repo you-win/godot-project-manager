@@ -1,4 +1,7 @@
-use std::{ffi::OsStr, path::PathBuf};
+use std::{
+    ffi::OsStr,
+    path::{Path, PathBuf},
+};
 
 use gdnative::api::ProjectSettings;
 
@@ -68,93 +71,126 @@ impl Engine {
         }
     }
 
-    pub fn scan_for_projects(&self) -> Option<Vec<Project>> {
+    pub fn scan_for_projects(&self) -> Vec<Project> {
         let mut output = vec![];
 
         for path in self.config.scan_paths.iter() {
-            // TODO
-            update_status(path);
-
-            for entry in walkdir::WalkDir::new(path)
-                .min_depth(1)
-                .max_depth(self.config.max_scan_depth.try_into().unwrap_or_else(|_| {
-                    update_status("Unable to read max_scan_depth from config with error");
-                    10
-                }))
-                .into_iter()
-                .filter_map(|e| e.ok())
-            {
-                if entry.file_type().is_file() {
+            let paths = match std::fs::read_dir(path) {
+                Ok(p) => p,
+                Err(e) => {
+                    update_status(format!("Unable to read dir {}\n{}", path, e));
                     continue;
                 }
+            };
 
-                let path = entry.path();
+            for entry in paths {
+                let entry = match &entry {
+                    Ok(de) => de,
+                    Err(e) => {
+                        update_status(format!("Unable to handle entry {:?}\n{}", entry, e));
+                        continue;
+                    }
+                };
 
-                let extension = path
-                    .extension()
-                    .unwrap_or(OsStr::new(""))
-                    .to_str()
-                    .unwrap_or("");
-
-                if extension != GODOT_PROJECT_FILE_EXTENSION {
-                    // TODO
-                    update_status(extension);
-                    continue;
-                }
-
-                let file_contents = match std::fs::read_to_string(&path) {
-                    Ok(f) => f,
+                match &entry.file_type() {
+                    Ok(ft) => {
+                        if ft.is_file() || ft.is_symlink() {
+                            continue;
+                        }
+                    }
                     Err(e) => {
                         update_status(format!(
-                            "Unable to read project file: {}\n{}",
-                            path.to_str().unwrap_or(CANNOT_GET_PATH_MESSAGE),
-                            e
+                            "Unable to determine file type for {:?}\n{}",
+                            &entry, e
                         ));
                         continue;
                     }
-                };
-                let project_name = match file_contents
-                    .split("\n")
-                    .filter(|x| x.starts_with(GODOT_PROJECT_NAME_KEY))
-                    .collect::<Vec<&str>>()
-                    .first()
-                {
-                    Some(n) => n.to_string(),
-                    None => {
-                        update_status(format!(
-                            "Unable to find project name for {}",
-                            path.to_str().unwrap_or(CANNOT_GET_PATH_MESSAGE)
-                        ));
-                        continue;
-                    }
-                };
-
-                let parent = path.parent();
-                if parent.is_none() {
-                    update_status(format!(
-                        "Could not find parent directory for {}",
-                        path.to_str().unwrap_or(CANNOT_GET_PATH_MESSAGE)
-                    ));
-                    continue;
                 }
 
-                let parent = match parent.unwrap().to_str() {
-                    Some(p) => p.to_string(),
-                    None => {
-                        update_status(format!(
-                            "Unable to get path for Godot project at {}",
-                            path.to_str().unwrap_or(CANNOT_GET_PATH_MESSAGE)
-                        ));
-                        continue;
-                    }
-                };
+                let path = &entry.path();
+                let path = path.as_path();
 
-                output.push(Project::new(&project_name, &parent));
+                match scan_path_for_project_file(path) {
+                    Some(project) => output.push(project),
+                    None => update_status(format!("No project found at {}", path.display())),
+                }
             }
         }
 
-        update_status(format!("{:?}", output));
-
-        None
+        output
     }
+}
+
+fn scan_path_for_project_file(project_path: &Path) -> Option<Project> {
+    let files = match std::fs::read_dir(project_path) {
+        Ok(f) => f,
+        Err(e) => {
+            update_status(format!(
+                "Unable to read dir {}\n{}",
+                project_path.display(),
+                e
+            ));
+            return None;
+        }
+    };
+
+    for file in files {
+        let file = match &file {
+            Ok(f) => f,
+            Err(e) => {
+                update_status(format!(
+                    "Unable to get file information for {:?}\n{}",
+                    file, e
+                ));
+                continue;
+            }
+        };
+
+        let path = file.path();
+        let path = path.as_path();
+
+        if path
+            .extension()
+            .unwrap_or(OsStr::new(""))
+            .to_str()
+            .unwrap_or("")
+            != GODOT_PROJECT_FILE_EXTENSION
+        {
+            continue;
+        }
+
+        let contents = match std::fs::read_to_string(path) {
+            Ok(f) => f,
+            Err(e) => {
+                update_status(format!(
+                    "Unable to read project file {}\n{}",
+                    path.display(),
+                    e
+                ));
+                continue;
+            }
+        };
+        let project_name = match contents
+            .split("\n")
+            .filter(|x| x.starts_with(GODOT_PROJECT_NAME_KEY))
+            .collect::<Vec<&str>>()
+            .first()
+        {
+            Some(n) => n.to_string(),
+            None => {
+                update_status(format!(
+                    "Unable to find project name for {}",
+                    path.display()
+                ));
+                continue;
+            }
+        };
+
+        return Some(Project::new(
+            project_name,
+            project_path.to_str().unwrap().to_string(),
+        ));
+    }
+
+    None
 }

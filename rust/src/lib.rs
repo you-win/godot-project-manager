@@ -39,9 +39,14 @@ fn init(handle: InitHandle) {
     handle.add_class::<main_screen::MainScreen>();
 
     handle.add_class::<projects_screen::ProjectsScreen>();
+    handle.add_class::<projects_screen::ProjectItem>();
+
     handle.add_class::<addons_screen::AddonsScreen>();
     handle.add_class::<templates_screen::TemplatesScreen>();
+
     handle.add_class::<settings_screen::SettingsScreen>();
+    handle.add_class::<settings_screen::ScanPathItem>();
+
     handle.add_class::<about_screen::AboutScreen>();
 }
 

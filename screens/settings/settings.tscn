@@ -50,16 +50,16 @@ margin_right = 719.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/General/VBoxContainer/ScanPaths/VBoxContainer"]
+[node name="AddPath" type="HBoxContainer" parent="HSplitContainer/General/VBoxContainer/ScanPaths/VBoxContainer"]
 margin_right = 358.0
 margin_bottom = 24.0
 
-[node name="LineEdit" type="LineEdit" parent="HSplitContainer/General/VBoxContainer/ScanPaths/VBoxContainer/HBoxContainer"]
+[node name="LineEdit" type="LineEdit" parent="HSplitContainer/General/VBoxContainer/ScanPaths/VBoxContainer/AddPath"]
 margin_right = 317.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 
-[node name="Button" type="Button" parent="HSplitContainer/General/VBoxContainer/ScanPaths/VBoxContainer/HBoxContainer"]
+[node name="Button" type="Button" parent="HSplitContainer/General/VBoxContainer/ScanPaths/VBoxContainer/AddPath"]
 margin_left = 321.0
 margin_right = 358.0
 margin_bottom = 24.0

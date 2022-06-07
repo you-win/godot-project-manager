@@ -1,9 +1,11 @@
+use gdnative::derive::{FromVariant, ToVariant};
 use serde::{Deserialize, Serialize};
 use std::{fs, io::Write, path::PathBuf};
 
 use crate::{utils::Stringable, Result};
 
 pub const SAVE_DIR: &str = "user://config.toml";
+const DEFAULT_SCAN_DEPTH: i64 = 2;
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Config {
@@ -12,10 +14,13 @@ pub struct Config {
     pub projects: Vec<Project>,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, ToVariant, FromVariant)]
 pub struct Project {
     pub name: String,
     pub path: String,
+
+    pub missing: bool,
+    pub grayed: bool,
 }
 
 impl Project {
@@ -23,6 +28,9 @@ impl Project {
         Self {
             name: name.to_string(),
             path: path.to_string(),
+
+            missing: false,
+            grayed: false,
         }
     }
 }
@@ -35,7 +43,7 @@ impl Config {
                 .to_str()
                 .unwrap_or("/")
                 .to_string()],
-            max_scan_depth: 1,
+            max_scan_depth: DEFAULT_SCAN_DEPTH,
             projects: vec![],
         }
     }

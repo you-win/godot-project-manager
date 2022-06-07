@@ -1,17 +1,30 @@
-use gdnative::api::{HSplitContainer, LineEdit, TextEdit, Tree};
+use std::path::{Path, PathBuf};
+
+use gdnative::api::control::SizeFlags;
+use gdnative::api::{
+    HBoxContainer, HSplitContainer, LineEdit, ProjectSettings, RichTextLabel, TextEdit, Tree,
+    VBoxContainer,
+};
 use gdnative::prelude::*;
 
+use crate::utils::update_status;
 use crate::{ENGINE, LOGS};
 
 const STARTING_SCREEN: &str = "General";
 const TREE_NAME: &str = "Tree";
 const TREE_COL: i64 = 0;
 
+const HOME_ENV_VAR: &str = "$HOME";
+
 #[derive(NativeClass)]
 #[inherit(Control)]
 pub struct SettingsScreen {
     hsplit: Option<Ref<HSplitContainer>>,
     tree: Option<Ref<Tree>>,
+
+    scan_paths: Option<Ref<VBoxContainer>>,
+    add_path: Option<Ref<LineEdit>>,
+    add_path_button: Option<Ref<Button>>,
 }
 
 #[methods]
@@ -20,6 +33,10 @@ impl SettingsScreen {
         Self {
             hsplit: None,
             tree: None,
+
+            scan_paths: None,
+            add_path: None,
+            add_path_button: None,
         }
     }
 
@@ -76,6 +93,51 @@ impl SettingsScreen {
                 .unwrap()
         };
         unsafe { LOGS = Some(logs.claim()) };
+
+        let scan_paths_list = unsafe {
+            o.get_node_as::<VBoxContainer>(
+                "HSplitContainer/General/VBoxContainer/ScanPaths/VBoxContainer",
+            )
+            .unwrap()
+        };
+        self.scan_paths = Some(scan_paths_list.claim());
+
+        let add_path_button = unsafe {
+            o.get_node_as::<Button>(
+                "HSplitContainer/General/VBoxContainer/ScanPaths/VBoxContainer/AddPath/Button",
+            )
+            .unwrap()
+        };
+        self.add_path_button = Some(add_path_button.claim());
+        add_path_button
+            .connect("pressed", o, "_on_add_path", VariantArray::new_shared(), 0)
+            .unwrap();
+
+        let add_path_line_edit = unsafe {
+            o.get_node_as::<LineEdit>(
+                "HSplitContainer/General/VBoxContainer/ScanPaths/VBoxContainer/AddPath/LineEdit",
+            )
+            .unwrap()
+        };
+        add_path_line_edit
+            .connect(
+                "text_entered",
+                o,
+                "_on_add_path_text_enter_pressed",
+                VariantArray::new_shared(),
+                0,
+            )
+            .unwrap();
+        add_path_line_edit
+            .connect(
+                "text_changed",
+                o,
+                "_on_add_path_text_changed",
+                VariantArray::new_shared(),
+                0,
+            )
+            .unwrap();
+        self.add_path = Some(add_path_line_edit.claim());
     }
 
     #[export]
@@ -100,25 +162,154 @@ impl SettingsScreen {
     }
 
     #[export]
-    pub fn update_from_config(&mut self, o: TRef<Control>) {
+    fn _on_add_path_text_changed(&mut self, _: &Control, text: GodotString) {
+        let mut text = ProjectSettings::godot_singleton()
+            .globalize_path(text)
+            .to_string();
+
+        text = text.replace(
+            HOME_ENV_VAR,
+            home::home_dir()
+                .unwrap_or_else(|| {
+                    update_status("Unable to compute user home dir");
+                    PathBuf::from("/")
+                })
+                .to_str()
+                .unwrap(),
+        );
+
+        unsafe { self.add_path_button.unwrap().assume_safe() }.set_disabled(
+            if Path::new(&text).exists() {
+                false
+            } else {
+                true
+            },
+        );
+    }
+
+    fn _on_add_path_text_enter_pressed(&mut self, o: &Control, _: GodotString) {
+        self._on_add_path(o)
+    }
+
+    #[export]
+    fn _on_add_path(&mut self, _: &Control) {
+        let line_edit = unsafe { self.add_path.unwrap().assume_safe() };
+        let mut text = line_edit.text().to_string();
+        text = text.replace(
+            HOME_ENV_VAR,
+            home::home_dir()
+                .unwrap_or_else(|| {
+                    update_status("Unable to compute user home dir");
+                    PathBuf::from("/")
+                })
+                .to_str()
+                .unwrap(),
+        );
+
+        line_edit.set_text("");
+
+        {
+            let mut engine = ENGINE.lock().unwrap();
+            let config = engine.config_mut();
+
+            config.scan_paths.push(text.clone());
+        }
+
+        self.add_scan_path_item(&text);
+    }
+
+    #[export]
+    fn _delete_node(&self, _: &Control, node: Ref<Node>) {
+        unsafe {
+            match node.assume_safe_if_sane() {
+                Some(n) => n.queue_free(),
+                None => {
+                    update_status("Tried to delete non-existent node");
+                    return;
+                }
+            }
+        }
+    }
+
+    #[export]
+    pub fn update_from_config(&mut self, _: &Control) {
         let mut engine = ENGINE.lock().unwrap();
 
         let config = engine.config_mut();
 
-        // let scan_path = unsafe {
-        //     o.get_node_as::<LineEdit>("HSplitContainer/General/VBoxContainer/ScanPaths/LineEdit")
-        //         .unwrap()
-        // };
-        // scan_path.set_text(
-        //     config
-        //         .scan_paths
-        //         .clone()
-        //         .into_iter()
-        //         .reduce(|mut a, b| {
-        //             a = format!("{},{}", a, b);
-        //             a
-        //         })
-        //         .unwrap(),
-        // );
+        for path in config.scan_paths.iter() {
+            self.add_scan_path_item(path);
+        }
+    }
+
+    fn add_scan_path_item(&mut self, text: &String) {
+        let paths = unsafe { self.scan_paths.unwrap().assume_safe() };
+
+        let item: Instance<ScanPathItem, Unique> = ScanPathItem::new_instance();
+        item.map_mut(|item, instance| {
+            item.apply_text(instance, text);
+        })
+        .unwrap();
+
+        paths.add_child(item, false);
+    }
+}
+
+#[derive(NativeClass)]
+#[inherit(HBoxContainer)]
+pub struct ScanPathItem {
+    text: String,
+}
+
+#[methods]
+impl ScanPathItem {
+    fn new(o: TRef<HBoxContainer>) -> Self {
+        let label = LineEdit::new();
+        label.set_h_size_flags(SizeFlags::EXPAND_FILL.0);
+        label.set_editable(false);
+
+        let button = Button::new();
+        button.set_text("Remove");
+        button
+            .connect("pressed", o, "_delete", VariantArray::new_shared(), 0)
+            .unwrap();
+
+        o.add_child(label, false);
+        o.add_child(button, false);
+
+        Self {
+            text: "".to_string(),
+        }
+    }
+
+    fn apply_text(&mut self, o: TRef<HBoxContainer, Unique>, text: &String) {
+        let label = unsafe {
+            o.get_child(0)
+                .unwrap()
+                .assume_safe()
+                .cast::<LineEdit>()
+                .unwrap()
+        };
+        label.set_text(text);
+        o.set_name(text);
+
+        self.text = text.clone();
+    }
+
+    #[export]
+    fn _delete(&self, o: TRef<HBoxContainer>) {
+        let mut engine = ENGINE.lock().unwrap();
+        let config = engine.config_mut();
+
+        match config.scan_paths.binary_search(&self.text) {
+            Ok(i) => {
+                config.scan_paths.remove(i);
+            }
+            Err(_) => {
+                update_status(format!("Scan path {} not found", &self.text));
+            }
+        };
+
+        o.queue_free();
     }
 }

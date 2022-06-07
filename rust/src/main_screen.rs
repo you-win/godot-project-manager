@@ -40,7 +40,7 @@ impl MainScreen {
                 .unwrap()
         };
         settings_screen
-            .map_mut(|x, y| x.update_from_config(y))
+            .map_mut(|screen, instance| screen.update_from_config(instance.as_ref()))
             .unwrap();
 
         os.set_window_title(crate::app_name_and_version());
