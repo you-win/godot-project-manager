@@ -1,0 +1,85 @@
+GENERIC_UNEXPECTED_VALUE = "Unexpected value"
+
+;;----------------------------------------------------------------------------;;
+;; Main                                                                       ;;
+;;----------------------------------------------------------------------------;;
+
+MAIN_MENU_BUTTON_APP = "App"
+MENU_BUTTON_APP_QUIT = "Quit"
+PROJECTS_FILTER_SORT_LABEL = "Sort:"
+
+LATEST_GODOT_RELEASE_WAITING_FOR_RESPONSE = "Getting the latest Godot release"
+LATEST_GODOT_RELEASE_RESPONSE_ERROR = "Unable to get latest Godot release"
+
+;;----------------------------------------------------------------------------;;
+;; Projects                                                                   ;;
+;;----------------------------------------------------------------------------;;
+
+PROJECTS_EDIT_BUTTON = "Edit"
+PROJECTS_RUN_BUTTON = "Run"
+PROJECTS_SCAN_BUTTON = "Scan"
+PROJECTS_NEW_PROJECT_BUTTON = "New Project"
+PROJECTS_IMPORT_BUTTON = "Import"
+PROJECTS_RENAME_BUTTON = "Rename"
+PROJECTS_REMOVE_BUTTON = "Remove"
+PROJECTS_REMOVE_MISSING_BUTTON = "Remove Missing"
+
+PROJECTS_MISSING_PROJECT_NAME = "Unnamed Project"
+
+;;----------------------------------------------------------------------------;;
+;; Logs                                                                       ;;
+;;----------------------------------------------------------------------------;;
+
+LOGS_FILTER_LABEL = "Filter:"
+LOGS_OPEN_LOGS_BUTTON = "Open log file"
+LOGS_CLEAR_LOGS_BUTTON = "Clear logs"
+
+;;----------------------------------------------------------------------------;;
+;; Settings                                                                   ;;
+;;----------------------------------------------------------------------------;;
+
+SETTINGS_SEARCH_BAR_PLACEHOLDER = "Search for settings"
+
+SETTINGS_GENERAL_PAGE = "General"
+SETTINGS_BINARIES_PAGE = "Binaries"
+SETTINGS_DANGER_ZONE_PAGE = "Danger Zone"
+
+SETTINGS_SCAN_PATHS_LABEL = "Scan paths"
+SETTINGS_SCAN_PATHS_LINE_EDIT_PLACEHOLDER = "Path to scan"
+SETTINGS_SCAN_PATHS_ITEM_DELETE = "Delete"
+SETTINGS_SCAN_PATH_DOES_NOT_EXIST = "Scan path does not exist"
+SETTINGS_SCAN_PATH_ALREADY_EXISTS = "Scan path already exists"
+
+SETTINGS_CLEAR_SETTINGS_0 = "Clear settings"
+SETTINGS_CLEAR_SETTINGS_1 = "Confirm?"
+SETTINGS_CLEAR_SETTINGS_2 = "Writing default settings..."
+SETTINGS_CLEAR_SETTINGS_3 = "Settings cleared!"
+
+SETTINGS_DEBOUNCE_TIME_LABEL = "Debounce Time"
+SETTINGS_DEBOUNCE_TIME_VALUE_TOO_LOW = "Debounce time is too low"
+
+SETTINGS_ADD_BINARY = "Add Godot binary"
+
+SETTINGS_BINARY_NONE = "None"
+SETTINGS_BINARY_GODOT_3 = "Godot 3"
+SETTINGS_BINARY_GODOT_4 = "Godot 4"
+SETTINGS_BINARY_OTHER = "Other"
+
+SETTINGS_EDITOR_BINARY_ITEM_EDIT_BUTTON = "Edit"
+SETTINGS_EDITOR_BINARY_ITEM_DELETE_BUTTON = "Delete"
+
+SETTINGS_EDITOR_BINARY_ITEM_NAME_LABEL = "Name"
+SETTINGS_EDITOR_BINARY_ITEM_PATH_LABEL = "Path"
+SETTINGS_EDITOR_BINARY_ITEM_DEFAULT_ARGUMENTS_LABEL = "Default arguments"
+
+SETTINGS_EDITOR_BINARY_EDIT_NAME_LABEL = "Name"
+SETTINGS_EDITOR_BINARY_EDIT_PATH_LABEL = "Path"
+SETTINGS_EDITOR_BINARY_EDIT_PATH_DOES_NOT_EXIST = "Path does not exist"
+SETTINGS_EDITOR_BINARY_EDIT_PATH_ALREADY_EXISTS = "Path is already configured"
+SETTINGS_EDITOR_BINARY_EDIT_TYPE_LABEL = "Type"
+SETTINGS_EDITOR_BINARY_EDIT_DEFAULT_ARGUMENTS_LABEL = "Default arguments"
+
+SETTINGS_EDITOR_BINARY_EDIT_OBJECT_DELETED = "Binary config was deleted while being edited"
+
+SETTINGS_EDITOR_BINARY_EDIT_POPUP_CONFIRM_BUTTON = "Confirm"
+SETTINGS_EDITOR_BINARY_EDIT_POPUP_CANCEL_BUTTON = "Cancel"

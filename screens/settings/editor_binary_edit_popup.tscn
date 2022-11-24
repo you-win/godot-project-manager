@@ -1,0 +1,104 @@
+[gd_scene load_steps=6 format=3 uid="uid://btg25lno2v1uj"]
+
+[ext_resource type="Script" path="res://screens/settings/editor_binary_edit_popup.gd" id="1_fg008"]
+[ext_resource type="PackedScene" uid="uid://dswdij1d3s1ap" path="res://screens/settings/editor_binary_edit_name.tscn" id="2_osbh4"]
+[ext_resource type="PackedScene" uid="uid://lpgdxspwcb81" path="res://screens/settings/editor_binary_edit_path.tscn" id="3_b0c6w"]
+[ext_resource type="PackedScene" uid="uid://wmejsnevoqcq" path="res://screens/settings/editor_binary_edit_type.tscn" id="4_rx8oa"]
+[ext_resource type="PackedScene" uid="uid://3qfotje1kk0p" path="res://screens/settings/editor_binary_edit_default_arguments.tscn" id="5_6ia64"]
+
+[node name="EditorBinaryEditPopup" type="Window"]
+title = "Configure editor information"
+exclusive = true
+script = ExtResource("1_fg008")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.113725, 0.133333, 0.160784, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode = 2
+offset_right = 1580.0
+offset_bottom = 828.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
+layout_mode = 2
+offset_right = 1580.0
+offset_bottom = 194.0
+size_flags_horizontal = 3
+
+[node name="EditorBinaryEditName" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_osbh4")]
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+offset_right = 1580.0
+offset_bottom = 46.0
+grow_horizontal = 1
+
+[node name="EditorBinaryEditPath" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_b0c6w")]
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+offset_top = 52.0
+offset_right = 1580.0
+offset_bottom = 98.0
+grow_horizontal = 1
+
+[node name="EditorBinaryEditType" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_rx8oa")]
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+offset_top = 104.0
+offset_right = 1580.0
+offset_bottom = 142.0
+grow_horizontal = 1
+
+[node name="EditorBinaryEditDefaultArguments" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_6ia64")]
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+offset_top = 148.0
+offset_right = 1580.0
+offset_bottom = 194.0
+grow_horizontal = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+offset_top = 834.0
+offset_right = 1580.0
+offset_bottom = 880.0
+size_flags_vertical = 8
+
+[node name="Confirm" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+offset_left = 44.0
+offset_right = 743.0
+offset_bottom = 46.0
+size_flags_horizontal = 6
+disabled = true
+text = "SETTINGS_EDITOR_BINARY_EDIT_POPUP_CONFIRM_BUTTON"
+
+[node name="Cancel" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+offset_left = 846.0
+offset_right = 1526.0
+offset_bottom = 46.0
+size_flags_horizontal = 6
+text = "SETTINGS_EDITOR_BINARY_EDIT_POPUP_CANCEL_BUTTON"

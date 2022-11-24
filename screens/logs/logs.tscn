@@ -1,0 +1,77 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6fieo8d64hox"]
+
+[ext_resource type="Script" path="res://screens/logs/logs.gd" id="1_6tnqt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_grrbn"]
+
+[sub_resource type="CodeHighlighter" id="CodeHighlighter_7g78x"]
+number_color = Color(1, 1, 1, 1)
+symbol_color = Color(1, 1, 1, 1)
+function_color = Color(1, 1, 1, 1)
+member_variable_color = Color(1, 1, 1, 1)
+keyword_colors = {
+"DEBUG": Color(1, 1, 0, 1),
+"ERROR": Color(1, 0, 0, 1),
+"GLOBAL": Color(1, 0, 1, 1),
+"INFO": Color(0, 0.4, 1, 1),
+"TRACE": Color(0, 1, 0, 1)
+}
+
+[node name="Logs" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6tnqt")
+
+[node name="HFlowContainer" type="HFlowContainer" parent="."]
+layout_mode = 2
+offset_right = 1600.0
+offset_bottom = 46.0
+
+[node name="OpenLogFile" type="Button" parent="HFlowContainer"]
+layout_mode = 2
+offset_right = 332.0
+offset_bottom = 46.0
+text = "LOGS_OPEN_LOGS_BUTTON"
+
+[node name="Clear" type="Button" parent="HFlowContainer"]
+layout_mode = 2
+offset_left = 338.0
+offset_right = 676.0
+offset_bottom = 46.0
+text = "LOGS_CLEAR_LOGS_BUTTON"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HFlowContainer"]
+layout_mode = 2
+offset_left = 682.0
+offset_right = 937.0
+offset_bottom = 46.0
+
+[node name="Label" type="Label" parent="HFlowContainer/HBoxContainer"]
+layout_mode = 2
+offset_top = 4.0
+offset_right = 228.0
+offset_bottom = 42.0
+text = "LOGS_FILTER_LABEL"
+
+[node name="Filter" type="OptionButton" parent="HFlowContainer/HBoxContainer"]
+layout_mode = 2
+offset_left = 234.0
+offset_right = 255.0
+offset_bottom = 46.0
+
+[node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 2
+offset_top = 52.0
+offset_right = 1600.0
+offset_bottom = 900.0
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_readonly_color = Color(1, 1, 1, 1)
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_grrbn")
+editable = false
+wrap_mode = 1
+syntax_highlighter = SubResource("CodeHighlighter_7g78x")
+scroll_past_end_of_file = true

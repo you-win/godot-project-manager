@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://dl3voae5mreqv"]
+
+[ext_resource type="Script" path="res://screens/settings/settings.gd" id="1_7evfc"]
+[ext_resource type="PackedScene" uid="uid://dke3ypkj2ppvs" path="res://screens/settings/general.tscn" id="2_uqurl"]
+[ext_resource type="PackedScene" uid="uid://cplbcigb3cswd" path="res://screens/settings/binaries.tscn" id="3_qiwky"]
+[ext_resource type="PackedScene" uid="uid://0nu05v7nbha6" path="res://screens/settings/danger_zone.tscn" id="4_vesm6"]
+
+[node name="Settings" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7evfc")
+
+[node name="TopBar" type="HFlowContainer" parent="."]
+offset_right = 1600.0
+offset_bottom = 46.0
+
+[node name="Search" type="LineEdit" parent="TopBar"]
+offset_right = 1600.0
+offset_bottom = 46.0
+size_flags_horizontal = 3
+placeholder_text = "SETTINGS_SEARCH_BAR_PLACEHOLDER"
+
+[node name="Content" type="HSplitContainer" parent="."]
+offset_top = 52.0
+offset_right = 1600.0
+offset_bottom = 900.0
+size_flags_vertical = 3
+
+[node name="Tree" type="Tree" parent="Content"]
+offset_bottom = 848.0
+hide_root = true
+
+[node name="General" parent="Content" instance=ExtResource("2_uqurl")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 18.0
+offset_right = 1600.0
+offset_bottom = 848.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Binaries" parent="Content" instance=ExtResource("3_qiwky")]
+visible = false
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 18.0
+offset_right = 1600.0
+offset_bottom = 848.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="DangerZone" parent="Content" instance=ExtResource("4_vesm6")]
+visible = false

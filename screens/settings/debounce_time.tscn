@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2ka3lg3i0y2f"]
+
+[ext_resource type="Script" path="res://screens/settings/debounce_time.gd" id="1_dnq0p"]
+[ext_resource type="PackedScene" uid="uid://dcge1yamhwllx" path="res://screens/settings/abstract_settings_item.tscn" id="1_f4wjf"]
+
+[node name="DebounceTime" instance=ExtResource("1_f4wjf")]
+script = ExtResource("1_dnq0p")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." index="0"]
+offset_right = 1600.0
+offset_bottom = 46.0
+
+[node name="Label" type="Label" parent="HBoxContainer" index="0"]
+offset_top = 4.0
+offset_right = 797.0
+offset_bottom = 42.0
+size_flags_horizontal = 3
+text = "SETTINGS_DEBOUNCE_TIME_LABEL"
+
+[node name="LineEdit" type="LineEdit" parent="HBoxContainer" index="1"]
+offset_left = 803.0
+offset_right = 1600.0
+offset_bottom = 46.0
+size_flags_horizontal = 3
+
+[node name="Status" parent="." index="1"]
+offset_top = 52.0
+offset_bottom = 86.0

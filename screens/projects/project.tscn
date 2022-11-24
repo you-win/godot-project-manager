@@ -1,0 +1,98 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsx8e2wofd248"]
+
+[ext_resource type="Script" path="res://screens/projects/project.gd" id="1_y5coq"]
+[ext_resource type="StyleBox" uid="uid://e3w8rwkg80o" path="res://assets/themes/empty_content_margin_10.stylebox" id="2_evotj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jk55v"]
+bg_color = Color(1, 1, 1, 1)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[node name="Project" type="PanelContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+script = ExtResource("1_y5coq")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_right = 1600.0
+offset_bottom = 74.0
+mouse_filter = 2
+
+[node name="Favorite" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+offset_right = 33.0
+offset_bottom = 74.0
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = ExtResource("2_evotj")
+theme_override_styles/hover = ExtResource("2_evotj")
+theme_override_styles/pressed = ExtResource("2_evotj")
+theme_override_styles/disabled = ExtResource("2_evotj")
+theme_override_styles/focus = ExtResource("2_evotj")
+text = "*"
+
+[node name="Icon" type="TextureRect" parent="HBoxContainer"]
+unique_name_in_owner = true
+offset_left = 39.0
+offset_right = 39.0
+offset_bottom = 74.0
+mouse_filter = 2
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+offset_left = 45.0
+offset_right = 1077.0
+offset_bottom = 74.0
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Top" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+offset_right = 1032.0
+offset_bottom = 34.0
+mouse_filter = 2
+
+[node name="Title" type="Label" parent="HBoxContainer/VBoxContainer/Top"]
+unique_name_in_owner = true
+offset_right = 1.0
+offset_bottom = 34.0
+
+[node name="Bot" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+offset_top = 40.0
+offset_right = 1032.0
+offset_bottom = 74.0
+mouse_filter = 2
+
+[node name="Path" type="Label" parent="HBoxContainer/VBoxContainer/Bot"]
+unique_name_in_owner = true
+offset_right = 1.0
+offset_bottom = 34.0
+
+[node name="Options" type="MenuButton" parent="HBoxContainer"]
+unique_name_in_owner = true
+offset_left = 1083.0
+offset_right = 1600.0
+offset_bottom = 74.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = ExtResource("2_evotj")
+theme_override_styles/pressed = ExtResource("2_evotj")
+theme_override_styles/hover = ExtResource("2_evotj")
+theme_override_styles/disabled = ExtResource("2_evotj")
+theme_override_styles/focus = ExtResource("2_evotj")
+text = "..."
+
+[node name="Highlight" type="Panel" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_right = 1600.0
+offset_bottom = 74.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jk55v")

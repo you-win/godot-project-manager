@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcge1yamhwllx"]
+
+[ext_resource type="Script" path="res://screens/settings/abstract_settings_item.gd" id="1_hhy63"]
+
+[node name="AbstractSettingsItem" type="VBoxContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 34.0
+grow_horizontal = 2
+script = ExtResource("1_hhy63")
+
+[node name="Status" type="Label" parent="."]
+visible = false
+offset_right = 1600.0
+offset_bottom = 34.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+autowrap_mode = 3

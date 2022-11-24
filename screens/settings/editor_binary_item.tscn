@@ -1,0 +1,84 @@
+[gd_scene load_steps=2 format=3 uid="uid://10bmqkdgugfl"]
+
+[ext_resource type="Script" path="res://screens/settings/editor_binary_item.gd" id="2_do1wi"]
+
+[node name="EditorBinaryItem" type="VBoxContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 138.0
+grow_horizontal = 2
+script = ExtResource("2_do1wi")
+
+[node name="HSeparator" type="HSeparator" parent="."]
+offset_right = 1600.0
+offset_bottom = 6.0
+
+[node name="Options" type="HFlowContainer" parent="."]
+offset_top = 12.0
+offset_right = 1600.0
+offset_bottom = 58.0
+
+[node name="Edit" type="Button" parent="Options"]
+offset_right = 553.0
+offset_bottom = 46.0
+text = "SETTINGS_EDITOR_BINARY_ITEM_EDIT_BUTTON"
+
+[node name="Delete" type="Button" parent="Options"]
+offset_left = 559.0
+offset_right = 1144.0
+offset_bottom = 46.0
+text = "SETTINGS_EDITOR_BINARY_ITEM_DELETE_BUTTON"
+
+[node name="Name" type="HBoxContainer" parent="."]
+offset_top = 64.0
+offset_right = 1600.0
+offset_bottom = 102.0
+
+[node name="Key" type="Label" parent="Name"]
+offset_right = 797.0
+offset_bottom = 38.0
+size_flags_horizontal = 3
+text = "SETTINGS_EDITOR_BINARY_ITEM_NAME_LABEL"
+
+[node name="Value" type="Label" parent="Name"]
+offset_left = 803.0
+offset_top = 2.0
+offset_right = 1600.0
+offset_bottom = 36.0
+size_flags_horizontal = 3
+
+[node name="Path" type="HBoxContainer" parent="."]
+offset_top = 108.0
+offset_right = 1600.0
+offset_bottom = 146.0
+
+[node name="Key" type="Label" parent="Path"]
+offset_right = 797.0
+offset_bottom = 38.0
+size_flags_horizontal = 3
+text = "SETTINGS_EDITOR_BINARY_ITEM_PATH_LABEL"
+
+[node name="Value" type="Label" parent="Path"]
+offset_left = 803.0
+offset_top = 2.0
+offset_right = 1600.0
+offset_bottom = 36.0
+size_flags_horizontal = 3
+
+[node name="DefaultArguments" type="HBoxContainer" parent="."]
+offset_top = 152.0
+offset_right = 1600.0
+offset_bottom = 190.0
+
+[node name="Key" type="Label" parent="DefaultArguments"]
+offset_right = 797.0
+offset_bottom = 38.0
+size_flags_horizontal = 3
+text = "SETTINGS_EDITOR_BINARY_ITEM_DEFAULT_ARGUMENTS_LABEL"
+
+[node name="Value" type="Label" parent="DefaultArguments"]
+offset_left = 803.0
+offset_top = 2.0
+offset_right = 1600.0
+offset_bottom = 36.0
+size_flags_horizontal = 3

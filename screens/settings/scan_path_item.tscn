@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://b46ikgkatxa0v"]
+
+[ext_resource type="PackedScene" uid="uid://dcge1yamhwllx" path="res://screens/settings/abstract_settings_item.tscn" id="1_35i67"]
+[ext_resource type="Script" path="res://screens/settings/scan_path_item.gd" id="1_ceath"]
+
+[node name="ScanPathItem" instance=ExtResource("1_35i67")]
+script = ExtResource("1_ceath")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." index="0"]
+layout_mode = 2
+offset_right = 1600.0
+offset_bottom = 46.0
+
+[node name="LineEdit" type="LineEdit" parent="HBoxContainer" index="0"]
+layout_mode = 2
+offset_right = 1153.0
+offset_bottom = 46.0
+size_flags_horizontal = 3
+placeholder_text = "SETTINGS_SCAN_PATHS_LINE_EDIT_PLACEHOLDER"
+caret_blink = true
+caret_blink_interval = 0.5
+
+[node name="Button" type="Button" parent="HBoxContainer" index="1"]
+layout_mode = 2
+offset_left = 1159.0
+offset_right = 1600.0
+offset_bottom = 46.0
+text = "SETTINGS_SCAN_PATHS_ITEM_DELETE"
+
+[node name="Status" parent="." index="1"]
+offset_top = 52.0
+offset_bottom = 86.0

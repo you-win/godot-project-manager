@@ -1,0 +1,97 @@
+[gd_scene load_steps=3 format=3 uid="uid://cplbcigb3cswd"]
+
+[ext_resource type="PackedScene" uid="uid://bai5jlefsqxej" path="res://screens/settings/abstract_settings_page.tscn" id="1_8hehf"]
+[ext_resource type="Script" path="res://screens/settings/binaries.gd" id="1_o0ngn"]
+
+[node name="Binaries" instance=ExtResource("1_8hehf")]
+script = ExtResource("1_o0ngn")
+page_name = "SETTINGS_BINARIES_PAGE"
+
+[node name="VBoxContainer" parent="." index="0"]
+offset_bottom = 294.0
+
+[node name="Button" type="Button" parent="VBoxContainer" index="0"]
+layout_mode = 2
+offset_right = 1600.0
+offset_bottom = 46.0
+text = "SETTINGS_ADD_BINARY"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer" index="1"]
+layout_mode = 2
+offset_top = 52.0
+offset_right = 1600.0
+offset_bottom = 58.0
+
+[node name="Label" type="Label" parent="VBoxContainer" index="2"]
+layout_mode = 2
+offset_top = 64.0
+offset_right = 1600.0
+offset_bottom = 102.0
+text = "SETTINGS_BINARY_NONE"
+horizontal_alignment = 1
+
+[node name="None" type="VBoxContainer" parent="VBoxContainer" index="3"]
+layout_mode = 2
+offset_top = 108.0
+offset_right = 1600.0
+offset_bottom = 108.0
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer" index="4"]
+layout_mode = 2
+offset_top = 114.0
+offset_right = 1600.0
+offset_bottom = 120.0
+
+[node name="Label2" type="Label" parent="VBoxContainer" index="5"]
+layout_mode = 2
+offset_top = 126.0
+offset_right = 1600.0
+offset_bottom = 164.0
+text = "SETTINGS_BINARY_GODOT_3"
+horizontal_alignment = 1
+
+[node name="Godot3" type="VBoxContainer" parent="VBoxContainer" index="6"]
+layout_mode = 2
+offset_top = 170.0
+offset_right = 1600.0
+offset_bottom = 170.0
+
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer" index="7"]
+layout_mode = 2
+offset_top = 176.0
+offset_right = 1600.0
+offset_bottom = 182.0
+
+[node name="Label3" type="Label" parent="VBoxContainer" index="8"]
+layout_mode = 2
+offset_top = 188.0
+offset_right = 1600.0
+offset_bottom = 226.0
+text = "SETTINGS_BINARY_GODOT_4"
+horizontal_alignment = 1
+
+[node name="Godot4" type="VBoxContainer" parent="VBoxContainer" index="9"]
+layout_mode = 2
+offset_top = 232.0
+offset_right = 1600.0
+offset_bottom = 232.0
+
+[node name="HSeparator4" type="HSeparator" parent="VBoxContainer" index="10"]
+layout_mode = 2
+offset_top = 238.0
+offset_right = 1600.0
+offset_bottom = 244.0
+
+[node name="Label4" type="Label" parent="VBoxContainer" index="11"]
+layout_mode = 2
+offset_top = 250.0
+offset_right = 1600.0
+offset_bottom = 288.0
+text = "SETTINGS_BINARY_OTHER"
+horizontal_alignment = 1
+
+[node name="Other" type="VBoxContainer" parent="VBoxContainer" index="12"]
+layout_mode = 2
+offset_top = 294.0
+offset_right = 1600.0
+offset_bottom = 294.0

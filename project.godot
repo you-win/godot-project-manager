@@ -1,0 +1,101 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+_global_script_classes=[{
+"base": "VBoxContainer",
+"class": &"AbstractSettingsItem",
+"language": &"GDScript",
+"path": "res://screens/settings/abstract_settings_item.gd"
+}, {
+"base": "ScrollContainer",
+"class": &"AbstractSettingsPage",
+"language": &"GDScript",
+"path": "res://screens/settings/abstract_settings_page.gd"
+}, {
+"base": "Node",
+"class": &"AppManager",
+"language": &"GDScript",
+"path": "res://utils/app_manager.gd"
+}, {
+"base": "Resource",
+"class": &"Config",
+"language": &"GDScript",
+"path": "res://model/config.gd"
+}, {
+"base": "Resource",
+"class": &"EditorBinary",
+"language": &"GDScript",
+"path": "res://model/editor_binary.gd"
+}, {
+"base": "RefCounted",
+"class": &"Error",
+"language": &"GDScript",
+"path": "res://utils/safely/error.gd"
+}, {
+"base": "RefCounted",
+"class": &"Logger",
+"language": &"GDScript",
+"path": "res://utils/logger.gd"
+}, {
+"base": "RefCounted",
+"class": &"Result",
+"language": &"GDScript",
+"path": "res://utils/safely/result.gd"
+}, {
+"base": "RefCounted",
+"class": &"Safely",
+"language": &"GDScript",
+"path": "res://utils/safely/safely.gd"
+}, {
+"base": "RefCounted",
+"class": &"TranslationHelper",
+"language": &"GDScript",
+"path": "res://utils/translation_helper.gd"
+}]
+_global_script_class_icons={
+"AbstractSettingsItem": "",
+"AbstractSettingsPage": "",
+"AppManager": "",
+"Config": "",
+"EditorBinary": "",
+"Error": "",
+"Logger": "",
+"Result": "",
+"Safely": "",
+"TranslationHelper": ""
+}
+
+[application]
+
+config/name="Godot Project Manager"
+run/main_scene="res://screens/splash.tscn"
+config/features=PackedStringArray("4.0", "Forward Plus")
+run/low_processor_mode=true
+config/icon="res://assets/icon.svg"
+
+[autoload]
+
+AM="*res://utils/app_manager.gd"
+
+[debug]
+
+gdscript/warnings/shadowed_variable=0
+gdscript/warnings/assert_always_true=0
+gdscript/warnings/assert_always_false=0
+
+[display]
+
+window/size/viewport_width=1600
+window/size/viewport_height=900
+window/subwindows/embed_subwindows=false
+
+[gui]
+
+theme/default_theme_scale=1.5

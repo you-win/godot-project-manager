@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmeauvgts5bjw"]
+
+[ext_resource type="Script" path="res://screens/settings/scan_paths.gd" id="1_uj81o"]
+
+[node name="ScanPaths" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uj81o")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_right = 1600.0
+offset_bottom = 46.0
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+offset_top = 4.0
+offset_right = 797.0
+offset_bottom = 42.0
+size_flags_horizontal = 3
+text = "SETTINGS_SCAN_PATHS_LABEL"
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+offset_left = 803.0
+offset_right = 1600.0
+offset_bottom = 46.0
+size_flags_horizontal = 3
+text = "+"
+
+[node name="List" type="VBoxContainer" parent="."]
+offset_top = 52.0
+offset_right = 1600.0
+offset_bottom = 52.0

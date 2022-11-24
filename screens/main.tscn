@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=3 uid="uid://c8w2a0e4rr5bv"]
+
+[ext_resource type="Script" path="res://screens/main.gd" id="1_o0fb1"]
+[ext_resource type="PackedScene" uid="uid://dt63o5yeufckr" path="res://screens/projects/projects.tscn" id="2_hilyr"]
+[ext_resource type="PackedScene" uid="uid://b6fieo8d64hox" path="res://screens/logs/logs.tscn" id="3_t0ka5"]
+[ext_resource type="PackedScene" uid="uid://dl3voae5mreqv" path="res://screens/settings/settings.tscn" id="4_cjj0o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0trl1"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.105882, 0.113725, 0.121569, 1)
+
+[node name="Main" type="CanvasLayer"]
+script = ExtResource("1_o0fb1")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.113725, 0.133333, 0.160784, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopBar" type="HFlowContainer" parent="VBoxContainer"]
+layout_mode = 2
+offset_right = 1580.0
+offset_bottom = 46.0
+
+[node name="App" type="MenuButton" parent="VBoxContainer/TopBar"]
+layout_mode = 2
+offset_right = 324.0
+offset_bottom = 46.0
+text = "MAIN_MENU_BUTTON_APP"
+
+[node name="VersionMessage" type="RichTextLabel" parent="VBoxContainer/TopBar"]
+layout_mode = 2
+offset_left = 330.0
+offset_right = 1580.0
+offset_bottom = 46.0
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[right][wave]hello[/wave][/right]"
+
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer"]
+layout_mode = 2
+offset_top = 52.0
+offset_right = 1580.0
+offset_bottom = 880.0
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_0trl1")
+
+[node name="Projects" parent="VBoxContainer/TabContainer" instance=ExtResource("2_hilyr")]
+layout_mode = 2
+offset_left = 10.0
+offset_top = 56.0
+offset_right = -10.0
+offset_bottom = -10.0
+
+[node name="Settings" parent="VBoxContainer/TabContainer" instance=ExtResource("4_cjj0o")]
+visible = false
+layout_mode = 2
+
+[node name="Logs" parent="VBoxContainer/TabContainer" instance=ExtResource("3_t0ka5")]
+visible = false
+layout_mode = 2
+offset_left = 5.0
+offset_top = 51.0
+offset_right = -5.0
+offset_bottom = -5.0

@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dke3ypkj2ppvs"]
+
+[ext_resource type="Script" path="res://screens/settings/general.gd" id="1_h6tob"]
+[ext_resource type="PackedScene" uid="uid://bai5jlefsqxej" path="res://screens/settings/abstract_settings_page.tscn" id="1_lblr5"]
+[ext_resource type="PackedScene" uid="uid://dmeauvgts5bjw" path="res://screens/settings/scan_paths.tscn" id="3_nfjv5"]
+[ext_resource type="PackedScene" uid="uid://d2ka3lg3i0y2f" path="res://screens/settings/debounce_time.tscn" id="4_o34dl"]
+
+[node name="General" instance=ExtResource("1_lblr5")]
+script = ExtResource("1_h6tob")
+page_name = "SETTINGS_GENERAL_PAGE"
+
+[node name="VBoxContainer" parent="." index="0"]
+layout_mode = 3
+offset_bottom = 104.0
+
+[node name="ScanPaths" parent="VBoxContainer" index="0" instance=ExtResource("3_nfjv5")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1600.0
+offset_bottom = 52.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="DebounceTime" parent="VBoxContainer" index="1" instance=ExtResource("4_o34dl")]
+anchors_preset = 0
+anchor_right = 0.0
+offset_top = 58.0
+offset_right = 1600.0
+offset_bottom = 104.0
+grow_horizontal = 1

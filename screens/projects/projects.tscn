@@ -1,0 +1,133 @@
+[gd_scene load_steps=2 format=3 uid="uid://dt63o5yeufckr"]
+
+[ext_resource type="Script" path="res://screens/projects/projects.gd" id="1_a1dml"]
+
+[node name="Projects" type="HSplitContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a1dml")
+
+[node name="Left" type="VBoxContainer" parent="."]
+offset_right = 375.0
+offset_bottom = 900.0
+
+[node name="HFlowContainer" type="HFlowContainer" parent="Left"]
+offset_right = 375.0
+offset_bottom = 90.0
+
+[node name="Filter" type="LineEdit" parent="Left/HFlowContainer"]
+offset_right = 375.0
+offset_bottom = 46.0
+size_flags_horizontal = 3
+placeholder_text = "Filter projects"
+caret_blink = true
+caret_blink_interval = 0.5
+
+[node name="Sort" type="HBoxContainer" parent="Left/HFlowContainer"]
+offset_top = 52.0
+offset_right = 375.0
+offset_bottom = 90.0
+
+[node name="Label" type="Label" parent="Left/HFlowContainer/Sort"]
+offset_right = 348.0
+offset_bottom = 38.0
+text = "PROJECTS_FILTER_SORT_LABEL"
+
+[node name="Sort" type="OptionButton" parent="Left/HFlowContainer/Sort"]
+offset_left = 354.0
+offset_right = 375.0
+offset_bottom = 38.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Left"]
+offset_top = 96.0
+offset_right = 375.0
+offset_bottom = 900.0
+size_flags_vertical = 3
+
+[node name="Projects" type="VBoxContainer" parent="Left/ScrollContainer"]
+offset_right = 375.0
+offset_bottom = 804.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Right" type="ScrollContainer" parent="."]
+offset_left = 393.0
+offset_right = 1600.0
+offset_bottom = 900.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Right"]
+offset_right = 1207.0
+offset_bottom = 434.0
+size_flags_horizontal = 3
+
+[node name="Edit" type="Button" parent="Right/VBoxContainer"]
+unique_name_in_owner = true
+offset_right = 1207.0
+offset_bottom = 46.0
+disabled = true
+text = "PROJECTS_EDIT_BUTTON"
+
+[node name="Run" type="Button" parent="Right/VBoxContainer"]
+unique_name_in_owner = true
+offset_top = 52.0
+offset_right = 1207.0
+offset_bottom = 98.0
+disabled = true
+text = "PROJECTS_RUN_BUTTON"
+
+[node name="HSeparator" type="HSeparator" parent="Right/VBoxContainer"]
+offset_top = 104.0
+offset_right = 1207.0
+offset_bottom = 110.0
+
+[node name="Scan" type="Button" parent="Right/VBoxContainer"]
+unique_name_in_owner = true
+offset_top = 116.0
+offset_right = 1207.0
+offset_bottom = 162.0
+text = "PROJECTS_SCAN_BUTTON"
+
+[node name="HSeparator2" type="HSeparator" parent="Right/VBoxContainer"]
+offset_top = 168.0
+offset_right = 1207.0
+offset_bottom = 174.0
+
+[node name="NewProject" type="Button" parent="Right/VBoxContainer"]
+unique_name_in_owner = true
+offset_top = 180.0
+offset_right = 1207.0
+offset_bottom = 226.0
+text = "PROJECTS_NEW_PROJECT_BUTTON"
+
+[node name="Import" type="Button" parent="Right/VBoxContainer"]
+unique_name_in_owner = true
+offset_top = 232.0
+offset_right = 1207.0
+offset_bottom = 278.0
+text = "PROJECTS_IMPORT_BUTTON"
+
+[node name="Rename" type="Button" parent="Right/VBoxContainer"]
+unique_name_in_owner = true
+offset_top = 284.0
+offset_right = 1207.0
+offset_bottom = 330.0
+disabled = true
+text = "PROJECTS_RENAME_BUTTON"
+
+[node name="Remove" type="Button" parent="Right/VBoxContainer"]
+unique_name_in_owner = true
+offset_top = 336.0
+offset_right = 1207.0
+offset_bottom = 382.0
+disabled = true
+text = "PROJECTS_REMOVE_BUTTON"
+
+[node name="RemoveMissing" type="Button" parent="Right/VBoxContainer"]
+unique_name_in_owner = true
+offset_top = 388.0
+offset_right = 1207.0
+offset_bottom = 434.0
+text = "PROJECTS_REMOVE_MISSING_BUTTON"
