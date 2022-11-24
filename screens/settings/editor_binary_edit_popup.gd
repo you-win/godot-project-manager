@@ -51,7 +51,7 @@ func _ready() -> void:
 			confirm.disabled = true
 			binary_path.clear_status()
 			return false
-		if not FileAccess.file_exists(text):
+		if not (FileAccess.file_exists(text) or DirAccess.dir_exists_absolute(text)):
 			confirm.disabled = true
 			binary_path.set_status("SETTINGS_EDITOR_BINARY_EDIT_PATH_DOES_NOT_EXIST")
 			return false
@@ -67,15 +67,18 @@ func _ready() -> void:
 	
 	binary_path.button.pressed.connect(func() -> void:
 		var popup := FileDialog.new()
-		popup.file_mode = FileDialog.FILE_MODE_OPEN_FILE
+		popup.file_mode = FileDialog.FILE_MODE_OPEN_ANY
 		popup.access = FileDialog.ACCESS_FILESYSTEM
 		popup.current_path = AM.config.default_file_search_path
 		popup.show_hidden_files = true
-		popup.file_selected.connect(func(text: String) -> void:
+		
+		var any_selected := func(text: String) -> void:
 			binary_path.line_edit.text = text
 			if is_valid_path.call(text) and item_name.line_edit.text.is_empty():
 				item_name.line_edit.text = text.get_file()
-		)
+		
+		popup.file_selected.connect(any_selected)
+		popup.dir_selected.connect(any_selected)
 		
 		add_child(popup)
 		popup.popup_centered(size * FILE_SELECT_SCALE)

@@ -101,6 +101,8 @@ func _scan() -> void:
 	logger.info("Scanning for projects")
 	
 	for i in AM.config.scan_paths:
+		logger.debug("Scanning path %s" % i)
+		
 		var dir := DirAccess.open(i)
 		if dir == null:
 			logger.error("Cannot access scan path: %s" % i)

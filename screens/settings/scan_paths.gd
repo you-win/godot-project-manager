@@ -2,6 +2,8 @@ extends VBoxContainer
 
 const ScanPathItem: PackedScene = preload("res://screens/settings/scan_path_item.tscn")
 
+const FILE_SELECT_SCALE: float = 0.8
+
 #-----------------------------------------------------------------------------#
 # Builtin functions                                                           #
 #-----------------------------------------------------------------------------#
@@ -18,7 +20,7 @@ func _populate(list: VBoxContainer) -> void:
 		if not path.is_empty():
 			item.line_edit.text = path
 		
-		item.line_edit.text_changed.connect(func(text: String) -> void:
+		var validate_scan_path := func(text: String) -> void:
 			if not item.last_valid_path.is_empty():
 				AM.config.scan_paths.erase(item.last_valid_path)
 				item.last_valid_path = ""
@@ -36,9 +38,30 @@ func _populate(list: VBoxContainer) -> void:
 			AM.config.scan_paths.append(text)
 			item.last_valid_path = text
 			item.clear_status()
-		)
-		item.button.pressed.connect(func() -> void:
+		
+		item.line_edit.text_changed.connect(validate_scan_path)
+		item.delete.pressed.connect(func() -> void:
 			item.queue_free()
+		)
+		
+		item.select.pressed.connect(func() -> void:
+			# TODO This almost certainly can be refactored out
+			var popup := FileDialog.new()
+			popup.file_mode = FileDialog.FILE_MODE_OPEN_DIR
+			popup.access = FileDialog.ACCESS_FILESYSTEM
+			popup.current_path = AM.config.default_file_search_path
+			popup.show_hidden_files = true
+			popup.dir_selected.connect(func(text: String) -> void:
+				validate_scan_path.call(text)
+				item.line_edit.text = text
+			)
+			
+			add_child(popup)
+			popup.popup_centered(get_viewport().size * FILE_SELECT_SCALE)
+			
+			await popup.close_requested
+			
+			popup.queue_free()
 		)
 	
 	var button := $HBoxContainer/Button

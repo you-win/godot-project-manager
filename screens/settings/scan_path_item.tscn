@@ -7,23 +7,34 @@
 script = ExtResource("1_ceath")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." index="0"]
-layout_mode = 2
 offset_right = 1600.0
 offset_bottom = 46.0
 
 [node name="LineEdit" type="LineEdit" parent="HBoxContainer" index="0"]
-layout_mode = 2
-offset_right = 1153.0
+offset_right = 797.0
 offset_bottom = 46.0
 size_flags_horizontal = 3
 placeholder_text = "SETTINGS_SCAN_PATHS_LINE_EDIT_PLACEHOLDER"
 caret_blink = true
 caret_blink_interval = 0.5
 
-[node name="Button" type="Button" parent="HBoxContainer" index="1"]
-layout_mode = 2
-offset_left = 1159.0
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer" index="1"]
+offset_left = 803.0
 offset_right = 1600.0
+offset_bottom = 46.0
+size_flags_horizontal = 3
+
+[node name="Select" type="Button" parent="HBoxContainer/HBoxContainer" index="0"]
+unique_name_in_owner = true
+offset_right = 350.0
+offset_bottom = 46.0
+size_flags_horizontal = 3
+text = "..."
+
+[node name="Delete" type="Button" parent="HBoxContainer/HBoxContainer" index="1"]
+unique_name_in_owner = true
+offset_left = 356.0
+offset_right = 797.0
 offset_bottom = 46.0
 text = "SETTINGS_SCAN_PATHS_ITEM_DELETE"
 

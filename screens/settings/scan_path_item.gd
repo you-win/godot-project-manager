@@ -3,7 +3,9 @@ extends AbstractSettingsItem
 @onready
 var line_edit := $HBoxContainer/LineEdit
 @onready
-var button := $HBoxContainer/Button
+var delete := %Delete
+@onready
+var select := %Select
 
 var last_valid_path := ""
 

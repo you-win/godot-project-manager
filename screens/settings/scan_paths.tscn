@@ -11,10 +11,12 @@ grow_vertical = 2
 script = ExtResource("1_uj81o")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
 offset_right = 1600.0
 offset_bottom = 46.0
 
 [node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
 offset_top = 4.0
 offset_right = 797.0
 offset_bottom = 42.0
@@ -22,6 +24,7 @@ size_flags_horizontal = 3
 text = "SETTINGS_SCAN_PATHS_LABEL"
 
 [node name="Button" type="Button" parent="HBoxContainer"]
+layout_mode = 2
 offset_left = 803.0
 offset_right = 1600.0
 offset_bottom = 46.0
@@ -29,6 +32,7 @@ size_flags_horizontal = 3
 text = "+"
 
 [node name="List" type="VBoxContainer" parent="."]
+layout_mode = 2
 offset_top = 52.0
 offset_right = 1600.0
 offset_bottom = 52.0
