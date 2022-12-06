@@ -37,7 +37,17 @@ func _ready() -> void:
 			
 		var eb := EditorBinary.new(bin_name, bin_path, bin_type, bin_args)
 		
-		AM.config.editor_binaries[bin_path] = eb
+		var config := AM.config
+		
+		config.editor_binaries[bin_path] = eb
+		
+		match eb.type:
+			EditorBinary.Type.GODOT_3:
+				if config.default_godot_3_binary.is_empty():
+					config.default_godot_3_binary = bin_path
+			EditorBinary.Type.GODOT_4:
+				if config.default_godot_4_binary.is_empty():
+					config.default_godot_4_binary = bin_path
 		
 		confirmed.emit(eb)
 	)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dl3voae5mreqv"]
 
 [ext_resource type="Script" path="res://screens/settings/settings.gd" id="1_7evfc"]
-[ext_resource type="PackedScene" uid="uid://dke3ypkj2ppvs" path="res://screens/settings/general.tscn" id="2_uqurl"]
+[ext_resource type="PackedScene" path="res://screens/settings/general.tscn" id="2_uqurl"]
 [ext_resource type="PackedScene" uid="uid://cplbcigb3cswd" path="res://screens/settings/binaries.tscn" id="3_qiwky"]
 [ext_resource type="PackedScene" uid="uid://0nu05v7nbha6" path="res://screens/settings/danger_zone.tscn" id="4_vesm6"]
 

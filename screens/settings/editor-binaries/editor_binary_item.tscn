@@ -1,13 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://10bmqkdgugfl"]
+[gd_scene load_steps=2 format=3 uid="uid://og5okwmqi56k"]
 
-[ext_resource type="Script" path="res://screens/settings/editor_binary_item.gd" id="2_do1wi"]
+[ext_resource type="Script" path="res://screens/settings/editor-binaries/editor_binary_item.gd" id="1_cldjo"]
 
 [node name="EditorBinaryItem" type="VBoxContainer"]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 138.0
 grow_horizontal = 2
-script = ExtResource("2_do1wi")
+script = ExtResource("1_cldjo")
 
 [node name="HSeparator" type="HSeparator" parent="."]
 offset_right = 1600.0

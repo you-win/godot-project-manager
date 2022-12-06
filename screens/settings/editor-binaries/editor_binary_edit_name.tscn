@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dswdij1d3s1ap"]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="PackedScene" uid="uid://dcge1yamhwllx" path="res://screens/settings/abstract_settings_item.tscn" id="1_2vapi"]
-[ext_resource type="Script" path="res://screens/settings/editor_binary_edit_name.gd" id="2_c4ddr"]
+[ext_resource type="Script" path="res://screens/settings/editor-binaries/editor_binary_edit_name.gd" id="2_c4ddr"]
 
 [node name="EditorBinaryEditName" instance=ExtResource("1_2vapi")]
 script = ExtResource("2_c4ddr")

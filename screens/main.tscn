@@ -35,18 +35,15 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TopBar" type="HFlowContainer" parent="VBoxContainer"]
-layout_mode = 2
 offset_right = 1580.0
 offset_bottom = 46.0
 
 [node name="App" type="MenuButton" parent="VBoxContainer/TopBar"]
-layout_mode = 2
 offset_right = 324.0
 offset_bottom = 46.0
 text = "MAIN_MENU_BUTTON_APP"
 
 [node name="VersionMessage" type="RichTextLabel" parent="VBoxContainer/TopBar"]
-layout_mode = 2
 offset_left = 330.0
 offset_right = 1580.0
 offset_bottom = 46.0
@@ -55,7 +52,6 @@ bbcode_enabled = true
 text = "[right][wave]hello[/wave][/right]"
 
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer"]
-layout_mode = 2
 offset_top = 52.0
 offset_right = 1580.0
 offset_bottom = 880.0
@@ -63,7 +59,6 @@ size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_0trl1")
 
 [node name="Projects" parent="VBoxContainer/TabContainer" instance=ExtResource("2_hilyr")]
-layout_mode = 2
 offset_left = 10.0
 offset_top = 56.0
 offset_right = -10.0
@@ -71,11 +66,9 @@ offset_bottom = -10.0
 
 [node name="Settings" parent="VBoxContainer/TabContainer" instance=ExtResource("4_cjj0o")]
 visible = false
-layout_mode = 2
 
 [node name="Logs" parent="VBoxContainer/TabContainer" instance=ExtResource("3_t0ka5")]
 visible = false
-layout_mode = 2
 offset_left = 5.0
 offset_top = 51.0
 offset_right = -5.0

@@ -40,6 +40,11 @@ _global_script_classes=[{
 "path": "res://utils/safely/error.gd"
 }, {
 "base": "RefCounted",
+"class": &"Globals",
+"language": &"GDScript",
+"path": "res://model/globals.gd"
+}, {
+"base": "RefCounted",
 "class": &"Logger",
 "language": &"GDScript",
 "path": "res://utils/logger.gd"
@@ -66,6 +71,7 @@ _global_script_class_icons={
 "Config": "",
 "EditorBinary": "",
 "Error": "",
+"Globals": "",
 "Logger": "",
 "Result": "",
 "Safely": "",

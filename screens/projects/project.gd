@@ -1,11 +1,17 @@
 extends PanelContainer
 
+signal selected()
+
 @onready
 var icon: TextureRect = %Icon
 @onready
 var title: Label = %Title
 @onready
+var godot_version: Label = %GodotVersion
+@onready
 var path: Label = %Path
+@onready
+var selected_highlight: Panel = %SelectedHighlight
 
 # TODO testing
 var is_favorite := false
@@ -27,13 +33,13 @@ func _ready() -> void:
 			favorite.modulate = Color.BLACK
 	)
 	
-	var highlight: Panel = %Highlight
+	var hover_highlight: Panel = %HoverHighlight
 	
 	mouse_entered.connect(func() -> void:
-		highlight.show()
+		hover_highlight.show()
 	)
 	mouse_exited.connect(func() -> void:
-		highlight.hide()
+		hover_highlight.hide()
 	)
 	
 	var options: MenuButton = %Options
@@ -47,12 +53,14 @@ func _ready() -> void:
 func _gui_input(event: InputEvent) -> void:
 	if not event is InputEventMouseButton:
 		return
+	if event.pressed:
+		selected.emit()
 	if not event.double_click:
 		return
 	if in_option_button:
 		return
 	
-	print(title.text)
+	AM.config.execute("%s/project.godot" % path.text, godot_version.text)
 
 #-----------------------------------------------------------------------------#
 # Private functions                                                           #

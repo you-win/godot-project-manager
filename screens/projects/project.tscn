@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dsx8e2wofd248"]
+[gd_scene load_steps=5 format=3 uid="uid://dsx8e2wofd248"]
 
 [ext_resource type="Script" path="res://screens/projects/project.gd" id="1_y5coq"]
 [ext_resource type="StyleBox" uid="uid://e3w8rwkg80o" path="res://assets/themes/empty_content_margin_10.stylebox" id="2_evotj"]
@@ -11,6 +11,9 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a2kq6"]
+bg_color = Color(1, 1, 1, 0.270588)
 
 [node name="Project" type="PanelContainer"]
 anchors_preset = 10
@@ -62,6 +65,13 @@ unique_name_in_owner = true
 offset_right = 1.0
 offset_bottom = 34.0
 
+[node name="GodotVersion" type="Label" parent="HBoxContainer/VBoxContainer/Top"]
+unique_name_in_owner = true
+offset_left = 1031.0
+offset_right = 1032.0
+offset_bottom = 34.0
+size_flags_horizontal = 10
+
 [node name="Bot" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
 offset_top = 40.0
 offset_right = 1032.0
@@ -89,10 +99,18 @@ theme_override_styles/disabled = ExtResource("2_evotj")
 theme_override_styles/focus = ExtResource("2_evotj")
 text = "..."
 
-[node name="Highlight" type="Panel" parent="."]
+[node name="HoverHighlight" type="Panel" parent="."]
 unique_name_in_owner = true
 visible = false
 offset_right = 1600.0
 offset_bottom = 74.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_jk55v")
+
+[node name="SelectedHighlight" type="Panel" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_right = 1600.0
+offset_bottom = 74.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_a2kq6")

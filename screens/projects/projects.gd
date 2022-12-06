@@ -16,6 +16,7 @@ const CONFIG_PROJECT_NAME_KEY := "config/name"
 const CONFIG_PROJECT_ICON := "config/icon"
 
 const DEFAULT_PROJECT_NAME := "PROJECTS_MISSING_PROJECT_NAME"
+const MISSING_CONFIG_VERSION := "PROJECTS_MISSING_CONFIG_VERSION"
 
 const GODOT_3_CONFIG_VERSION: int = 4
 const GODOT_4_CONFIG_VERSION: int = 5
@@ -31,6 +32,7 @@ var projects := $Left/ScrollContainer/Projects
 var logger := Logger.new("Projects")
 
 var _last_size_x: float = 1.0
+var _last_selected_project: Control = null
 
 #-----------------------------------------------------------------------------#
 # Builtin functions                                                           #
@@ -174,8 +176,23 @@ func _populate_projects() -> void:
 		var project := Project.instantiate()
 		projects.add_child(project)
 		
+		project.selected.connect(func() -> void:
+			if _last_selected_project != null:
+				_last_selected_project.selected_highlight.hide()
+			
+			_last_selected_project = project
+			_last_selected_project.selected_highlight.show()
+		)
+		
 		project.title.text = config.get_value(
 			CONFIG_APPLICATION_SECTION, CONFIG_PROJECT_NAME_KEY, DEFAULT_PROJECT_NAME)
+		match config.get_value("", CONFIG_VERSION_KEY, -1):
+			3, 4:
+				project.godot_version.text = Globals.GODOT_3
+			5:
+				project.godot_version.text = Globals.GODOT_4
+			_:
+				project.godot_version.text = MISSING_CONFIG_VERSION
 		project.path.text = containing_directory
 	
 	logger.info("Finished populating projects")

@@ -1,10 +1,12 @@
 extends AbstractSettingsPage
 
-const EditorBinaryEditPopup: PackedScene = preload("res://screens/settings/editor_binary_edit_popup.tscn")
-const EditorBinaryItem: PackedScene = preload("res://screens/settings/editor_binary_item.tscn")
+const EditorBinaryEditPopup: PackedScene = preload("res://screens/settings/editor-binaries/editor_binary_edit_popup.tscn")
+const EditorBinaryItem: PackedScene = preload("res://screens/settings/editor-binaries/editor_binary_item.tscn")
 
 const POPUP_SIZE_RATIO: float = 0.75
 
+@onready
+var default_binaries: VBoxContainer = $VBoxContainer/DefaultBinaries
 @onready
 var none: VBoxContainer = $VBoxContainer/None
 @onready
@@ -84,6 +86,9 @@ func _add_item(eb: EditorBinary, mapping: Dictionary) -> void:
 func _populate(data: Dictionary) -> void:
 	for i in AM.config.editor_binaries.values():
 		_add_item(i as EditorBinary, _categories)
+	
+	default_binaries.godot3.text = AM.config.default_godot_3_binary
+	default_binaries.godot4.text = AM.config.default_godot_4_binary
 
 #-----------------------------------------------------------------------------#
 # Public functions                                                            #

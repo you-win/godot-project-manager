@@ -1,0 +1,68 @@
+[gd_scene load_steps=2 format=3 uid="uid://4bdusnu4wfvt"]
+
+[ext_resource type="Script" path="res://screens/settings/default_binaries.gd" id="1_0vxbr"]
+
+[node name="DefaultBinaries" type="VBoxContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+script = ExtResource("1_0vxbr")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 1600.0
+offset_bottom = 38.0
+text = "SETTINGS_DEFAULT_BINARY"
+horizontal_alignment = 1
+
+[node name="Godot3" type="HBoxContainer" parent="."]
+offset_top = 44.0
+offset_right = 1600.0
+offset_bottom = 90.0
+
+[node name="Label" type="Label" parent="Godot3"]
+offset_top = 4.0
+offset_right = 777.0
+offset_bottom = 42.0
+size_flags_horizontal = 3
+text = "Godot 3"
+
+[node name="Godot3" type="Label" parent="Godot3"]
+unique_name_in_owner = true
+offset_left = 783.0
+offset_top = 6.0
+offset_right = 1561.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+
+[node name="Delete" type="Button" parent="Godot3"]
+offset_left = 1567.0
+offset_right = 1600.0
+offset_bottom = 46.0
+text = "..."
+
+[node name="Godot4" type="HBoxContainer" parent="."]
+offset_top = 96.0
+offset_right = 1600.0
+offset_bottom = 142.0
+
+[node name="Label" type="Label" parent="Godot4"]
+offset_top = 4.0
+offset_right = 777.0
+offset_bottom = 42.0
+size_flags_horizontal = 3
+text = "Godot 4"
+
+[node name="Godot4" type="Label" parent="Godot4"]
+unique_name_in_owner = true
+offset_left = 783.0
+offset_top = 6.0
+offset_right = 1561.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+
+[node name="Delete" type="Button" parent="Godot4"]
+offset_left = 1567.0
+offset_right = 1600.0
+offset_bottom = 46.0
+text = "..."

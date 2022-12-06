@@ -1,6 +1,6 @@
 extends VBoxContainer
 
-const ScanPathItem: PackedScene = preload("res://screens/settings/scan_path_item.tscn")
+const ScanPathItem: PackedScene = preload("res://screens/settings/scan-paths/scan_path_item.tscn")
 
 const FILE_SELECT_SCALE: float = 0.8
 

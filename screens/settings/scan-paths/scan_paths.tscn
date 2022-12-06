@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://dmeauvgts5bjw"]
+[gd_scene load_steps=2 format=3]
 
-[ext_resource type="Script" path="res://screens/settings/scan_paths.gd" id="1_uj81o"]
+[ext_resource type="Script" path="res://screens/settings/scan-paths/scan_paths.gd" id="1_uj81o"]
 
 [node name="ScanPaths" type="VBoxContainer"]
 anchors_preset = 15
