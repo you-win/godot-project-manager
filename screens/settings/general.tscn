@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=5 format=3 uid="uid://bo3fmhegpip8x"]
 
 [ext_resource type="Script" path="res://screens/settings/general.gd" id="1_h6tob"]
 [ext_resource type="PackedScene" uid="uid://bai5jlefsqxej" path="res://screens/settings/abstract_settings_page.tscn" id="1_lblr5"]
-[ext_resource type="PackedScene" path="res://screens/settings/scan-paths/scan_paths.tscn" id="3_nfjv5"]
+[ext_resource type="PackedScene" uid="uid://ceftwdtgato4l" path="res://screens/settings/scan-paths/scan_paths.tscn" id="3_nfjv5"]
 [ext_resource type="PackedScene" uid="uid://d2ka3lg3i0y2f" path="res://screens/settings/debounce_time.tscn" id="4_o34dl"]
 
 [node name="General" instance=ExtResource("1_lblr5")]

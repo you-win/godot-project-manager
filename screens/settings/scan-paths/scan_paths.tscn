@@ -1,37 +1,21 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://ceftwdtgato4l"]
 
+[ext_resource type="PackedScene" uid="uid://dcge1yamhwllx" path="res://screens/settings/abstract_settings_item.tscn" id="1_rd0u6"]
 [ext_resource type="Script" path="res://screens/settings/scan-paths/scan_paths.gd" id="1_uj81o"]
 
-[node name="ScanPaths" type="VBoxContainer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ScanPaths" instance=ExtResource("1_rd0u6")]
 script = ExtResource("1_uj81o")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="AddScanPath" type="Button" parent="." index="0"]
 layout_mode = 2
 offset_right = 1600.0
 offset_bottom = 46.0
+text = "Add Scan Path"
 
-[node name="Label" type="Label" parent="HBoxContainer"]
+[node name="Status" parent="." index="1"]
 layout_mode = 2
-offset_top = 4.0
-offset_right = 797.0
-offset_bottom = 42.0
-size_flags_horizontal = 3
-text = "SETTINGS_SCAN_PATHS_LABEL"
 
-[node name="Button" type="Button" parent="HBoxContainer"]
-layout_mode = 2
-offset_left = 803.0
-offset_right = 1600.0
-offset_bottom = 46.0
-size_flags_horizontal = 3
-text = "+"
-
-[node name="List" type="VBoxContainer" parent="."]
+[node name="List" type="VBoxContainer" parent="." index="2"]
 layout_mode = 2
 offset_top = 52.0
 offset_right = 1600.0

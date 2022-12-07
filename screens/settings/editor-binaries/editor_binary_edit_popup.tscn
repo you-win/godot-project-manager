@@ -31,7 +31,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
-layout_mode = 2
 offset_right = 1580.0
 offset_bottom = 828.0
 grow_horizontal = 2
@@ -39,13 +38,11 @@ grow_vertical = 2
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
-layout_mode = 2
 offset_right = 1580.0
 offset_bottom = 194.0
 size_flags_horizontal = 3
 
 [node name="EditorBinaryEditName" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_lng2t")]
-layout_mode = 2
 anchors_preset = 0
 anchor_right = 0.0
 offset_right = 1580.0
@@ -53,7 +50,6 @@ offset_bottom = 46.0
 grow_horizontal = 1
 
 [node name="EditorBinaryEditPath" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_6jdpo")]
-layout_mode = 2
 anchors_preset = 0
 anchor_right = 0.0
 offset_top = 52.0
@@ -62,7 +58,6 @@ offset_bottom = 98.0
 grow_horizontal = 1
 
 [node name="EditorBinaryEditType" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_7ofqk")]
-layout_mode = 2
 anchors_preset = 0
 anchor_right = 0.0
 offset_top = 104.0
@@ -71,7 +66,6 @@ offset_bottom = 142.0
 grow_horizontal = 1
 
 [node name="EditorBinaryEditDefaultArguments" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_ms20e")]
-layout_mode = 2
 anchors_preset = 0
 anchor_right = 0.0
 offset_top = 148.0
@@ -80,14 +74,12 @@ offset_bottom = 194.0
 grow_horizontal = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
 offset_top = 834.0
 offset_right = 1580.0
 offset_bottom = 880.0
 size_flags_vertical = 8
 
 [node name="Confirm" type="Button" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
 offset_left = 44.0
 offset_right = 743.0
 offset_bottom = 46.0
@@ -96,7 +88,6 @@ disabled = true
 text = "SETTINGS_EDITOR_BINARY_EDIT_POPUP_CONFIRM_BUTTON"
 
 [node name="Cancel" type="Button" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
 offset_left = 846.0
 offset_right = 1526.0
 offset_bottom = 46.0

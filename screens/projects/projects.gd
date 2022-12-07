@@ -18,8 +18,8 @@ const CONFIG_PROJECT_ICON := "config/icon"
 const DEFAULT_PROJECT_NAME := "PROJECTS_MISSING_PROJECT_NAME"
 const MISSING_CONFIG_VERSION := "PROJECTS_MISSING_CONFIG_VERSION"
 
-const GODOT_3_CONFIG_VERSION: int = 4
-const GODOT_4_CONFIG_VERSION: int = 5
+const GODOT_3_CONFIG_VERSION := "4"
+const GODOT_4_CONFIG_VERSION := "5"
 
 @onready
 var filter_line_edit := $Left/HFlowContainer/Filter
